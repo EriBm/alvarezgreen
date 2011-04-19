@@ -3,9 +3,18 @@ body {
 	margin: 0px;
 }
 
+header,section,footer {
+	display: block;
+}
+
 header {
-	width: 960px;
+	width: 100%;
 	height: 112px;
+	margin: 0px auto;
+}
+
+header .content {
+	width: 960px;
 	margin: 0px auto;
 }
 
@@ -13,23 +22,11 @@ header {
 	font-family: helvetica;
 	font-size: 48px;
 	float: left;
-	padding-top: 15px;
+	padding-top: 25px;
 }
 
-.logo_alvarez {
-	color: #F0884C;
-	float: left;
-}
-
-.logo_green {
-	color: #707171;
-	float: left;
-}
-
-.logo_fotografia {
-	color: #707171;
-	font-size: 24px;
-	padding-left: 114px;
+.logo {
+	
 }
 
 .header_links {
@@ -45,7 +42,7 @@ header {
 	padding: 0px 5px;
 }
 
-#biografia, #contacto {
+#biografia,#contacto {
 	color: #F0884C;
 }
 
@@ -61,6 +58,47 @@ section .content {
 	height: 468px;
 	margin: 0px auto;
 	padding: 32px 242px 7px 246px;
+}
+
+.content_album_links {
+	float: left;
+	color: #707171;
+	margin-top: 261px;
+}
+
+li.content_album_link_selected {
+	color: #F0884C;
+	list-style: square;
+}
+
+li.content_album_link {
+	list-style: none;
+}
+
+.content_picture {
+	float: right;
+}
+
+.content_thumbnails {
+	width: 100%;
+	margin-top: 410px;
+}
+
+.content_thumbnails_separator {
+	with: 100%;
+	height: 1px;
+	background-color: #999999;
+}
+
+.content_thumbnail {
+	width: 67px;
+	height: 52.25px;
+	background-color: #FFFFFF;
+	float: left;
+	border-width: 1px;
+	border-color: #CCCCCC;
+	border-style: solid;
+	margin: 5px 1px;
 }
 
 footer {

@@ -64,6 +64,7 @@ section .content {
 	float: left;
 	color: #707171;
 	margin-top: 261px;
+	display: none;
 }
 
 li.content_album_link_selected {
@@ -73,6 +74,11 @@ li.content_album_link_selected {
 
 li.content_album_link {
 	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #707171;
 }
 
 .content_picture {
@@ -99,6 +105,7 @@ li.content_album_link {
 	border-color: #CCCCCC;
 	border-style: solid;
 	margin: 5px 1px;
+	cursor: pointer;
 }
 
 footer {

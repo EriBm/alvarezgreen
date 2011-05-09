@@ -15,10 +15,10 @@
 			</div>
 			<div class="header_links">
 				<a class="header_link" id="biografia" href="/biografia">biograf&iacute;a</a>
-				<a class="header_link" id="sociales" href="/sociales">sociales</a> <a
-					class="header_link" id="retratos" href="/retratos">retratos</a> <a
-					class="header_link" id="publicitarios" href="/publicitarios">publicitarios</a>
-				<a class="header_link" id="editorial" href="/editorial">editorial</a>
+				<a class="header_link" id="sociales" href="/gallery?album=sociales">sociales</a> <a
+					class="header_link" id="retratos" href="/gallery?album=retratos">retratos</a> <a
+					class="header_link" id="publicitarios" href="/gallery?album=publicitarios">publicitarios</a>
+				<a class="header_link" id="editorial" href="/gallery?album=editorial">editorial</a>
 				<a class="header_link" id="contacto" href="/contacto">contacto</a>
 			</div>
 		</div>
@@ -27,29 +27,30 @@
 		<div class="content">
 			<div class="content_album_links">
 				<ul>
-					<li class="content_album_link_selected">retratos</li>
-					<li class="content_album_link">colegios</li>
-					<li class="content_album_link">embarazos</li>
-					<li class="content_album_link">familias</li>
-					<li class="content_album_link">individuales</li>
+					{% if albums %}
+						{% for album in albums %}
+							{% if album_selected == album.album %}
+								<li class="content_album_link_selected">{{ album.album }}</li>
+							{% else %}
+								<li class="content_album_link">
+									<a href="gallery?album={{ album.category }}-{{ album.album }}">
+										{{ album.album }}
+									</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
 				</ul>
 			</div>
 			<div class="content_picture">
-				<img alt="Awesome picture" src="images/image_horizontal.png"
+				<img alt="{{ photo_selected.photoId }}" src="{{ photo_selected.url }}"
 					width="522" height="392" />
 			</div>
 			<div class="content_thumbnails">
 				<div class="content_thumbnails_separator"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
-				<div class="content_thumbnail"></div>
+				{% for photo in photos %}
+					<div class="content_thumbnail"><img width="67" height="52.25" alt="{{ photo.photoId }}" src="{{ photo.thumbnailUrl }}" onclick="photo_selection('{{ photo.url }}')" /></div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>

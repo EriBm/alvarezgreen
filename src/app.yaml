@@ -10,11 +10,11 @@ handlers:
 - url: /styles
   static_dir: styles
 
-- url : /js
+- url: /js
   static_dir: js
   
 - url: /gallery.*
   script: gallery.py
-  
+
 - url: /.*
   script: home.py

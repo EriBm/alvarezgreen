@@ -6,7 +6,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/functions.js"></script>
 </head>
-<body onload="set_content_album_links_height();">
+<body>
 	<header>
 		<div class="content">
 			<div class="header_logo">
@@ -49,7 +49,7 @@
 			<div class="content_thumbnails">
 				<div class="content_thumbnails_separator"></div>
 				{% for photo in photos %}
-					<div class="content_thumbnail"><img width="67" height="52.25" alt="{{ photo.photoId }}" src="{{ photo.thumbnailUrl }}" onclick="photo_selection('{{ photo.url }}')" /></div>
+					<div class="content_thumbnail"><img width="67" height="52.25" alt="{{ photo.photoId }}-{{ photo.url }}" src="{{ photo.thumbnailUrl }}" onclick="load_image(this)" /></div>
 				{% endfor %}
 			</div>
 		</div>

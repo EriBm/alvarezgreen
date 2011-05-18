@@ -1,10 +1,12 @@
 import gdata.photos.service
+from gdata.service import BadAuthentication
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'alvarezgreen.settings'
 
 from google.appengine.dist import use_library
 use_library('django', '1.2')
 import logging
+from google.appengine.api import mail
 from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -12,7 +14,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 class MainPage(webapp.RequestHandler):
     def get(self):
       username = 'cherny.berbesi@seiteca.com'
-      password = 'xxx'
+      password = '22,e6G1x'
       source = 'AlvaroGreenSite'
       if self.request.get('album'):
         if '-' in self.request.get('album'):
@@ -25,7 +27,15 @@ class MainPage(webapp.RequestHandler):
       gd_client.email = username
       gd_client.password = password
       gd_client.source = source
-      gd_client.ProgrammaticLogin()
+      try:
+        gd_client.ProgrammaticLogin()
+      except BadAuthentication:
+        self.response.out.write('Problema de autenticaci&oacute;n')
+        mail.send_mail(sender="cherny.berbesi@gmail.com>",
+                       to="Cherny D. C. Berbes&iacute; I. <cherny.berbesi@gmail.com>",
+                       subject="Problema con la pagina Web alvarezgreen.com",
+                       body="""Esta recibiendo este correo porque cambio su contrasena de Google y altero el servicio de picasa""")
+        return
       albums_entry = gd_client.GetUserFeed()
       photos = list()
       i = 0
@@ -54,8 +64,6 @@ class MainPage(webapp.RequestHandler):
               photos.append(photo)
               i += 0
 #        logging.info('title: %s, number of photos: %s, id: %s' % (album_entry.title.text, album_entry.numphotos.text, album_entry.gphoto_id.text))
-      logging.info('Albums: %s' % str(albums))
-      logging.info('Photos: %s' % str(photos))
       templates_values = { 'album_selected' : _album , 'photos' : photos, 'albums' : albums, 'photo_selected' : photo_selected}
       path = os.path.join(os.path.dirname(__file__), 'templates/gallery.html')
       self.response.out.write(template.render(path, templates_values))

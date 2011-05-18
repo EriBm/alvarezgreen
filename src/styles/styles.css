@@ -83,6 +83,7 @@ a {
 
 .content_picture {
 	float: right;
+	cursor: pointer;
 }
 
 .content_thumbnails {

@@ -1,7 +1,7 @@
 import gdata.photos.service
 from gdata.service import BadAuthentication
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'alvarezgreen.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'cherny-alvarezgreen.settings'
 
 from google.appengine.dist import use_library
 use_library('django', '1.2')
@@ -75,3 +75,36 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+TODO
+Traceback (most recent call last):
+  File "/root/google_appengine/google/appengine/ext/webapp/__init__.py", line 700, in __call__
+    handler.get(*groups)
+  File "/root/alvarezgreen/gallery.py", line 39, in get
+    albums_entry = gd_client.GetUserFeed()
+  File "/root/alvarezgreen/gdata/photos/service.py", line 235, in GetUserFeed
+    return self.GetFeed(uri, limit=limit)
+  File "/root/alvarezgreen/gdata/photos/service.py", line 178, in GetFeed
+    return self.Get(uri, converter=gdata.photos.AnyFeedFromString)
+  File "/root/alvarezgreen/gdata/service.py", line 1069, in Get
+    headers=extra_headers)
+  File "/root/alvarezgreen/atom/__init__.py", line 93, in optional_warn_function
+    return f(*args, **kwargs)
+  File "/root/alvarezgreen/atom/service.py", line 186, in request
+    data=data, headers=all_headers)
+  File "/root/alvarezgreen/gdata/auth.py", line 725, in perform_request
+    return http_client.request(operation, url, data=data, headers=headers)
+  File "/root/alvarezgreen/atom/http.py", line 174, in request
+    return connection.getresponse()
+  File "/root/google_appengine/google/appengine/dist/httplib.py", line 213, in getresponse
+    self._allow_truncated, self._follow_redirects)
+  File "/root/google_appengine/google/appengine/api/urlfetch.py", line 260, in fetch
+    return rpc.get_result()
+  File "/root/google_appengine/google/appengine/api/apiproxy_stub_map.py", line 592, in get_result
+    return self.__get_result_hook(self)
+  File "/root/google_appengine/google/appengine/api/urlfetch.py", line 358, in _get_fetch_result
+    raise DownloadError(str(err))
+DownloadError: ApplicationError: 2 The read operation timed out
+"""

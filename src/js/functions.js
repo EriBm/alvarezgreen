@@ -13,7 +13,10 @@ $(document).ready(function() {
 		load_image();
 	});
 	$(".content_picture img").click(function() {
-		$("img[alt|=" + $(this).attr("alt") + "]");
+		var current_position = $("img[alt^='" + $(this).attr("alt") + "-']").parent().index()+1;
+		console.log(current_position);
+//		$(".content_thumbnail").eq($("img[alt^='5600398738051520754-']").parent().index()+1)
+//		$("img[alt|=" + $(this).attr("alt") + "]");
 	});
 });
 

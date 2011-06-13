@@ -14,7 +14,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 class MainPage(webapp.RequestHandler):
     def get(self):
         username = 'cherny.berbesi@seiteca.com'
-        password = 'xxx'
+        password = '22,e6G1x'
         source = 'AlvaroGreenSite'
         if self.request.get('album'):
             if '-' in self.request.get('album'):

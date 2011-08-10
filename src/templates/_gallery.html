@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Alvarez Green Fotograf&iacute;a - {{album}}</title>
+<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="js/functions.js"></script>
+</head>
+<body>
+	<header>
+		<div id="container" class="container">
+			<div class="header_logo">
+				<img class="logo" alt="Avaro Green Fotograf&iacute;a"
+					src="images/alvarezgreen_logo.png" />
+			</div>
+			<div class="header_links">
+				<a class="header_link" id="biografia" href="/biografia">biograf&iacute;a</a>
+				<a class="header_link" id="sociales" href="/gallery?album=sociales">sociales</a> <a
+					class="header_link" id="retratos" href="/gallery?album=retratos">retratos</a> <a
+					class="header_link" id="publicitarios" href="/gallery?album=publicitarios">publicitarios</a>
+				<a class="header_link" id="editorial" href="/gallery?album=editorial">editorial</a>
+				<a class="header_link" id="contacto" href="/contacto">contacto</a>
+			</div>
+		</div>
+	</header>
+	<section class="section_container">
+		<div class="container">
+			<div class="container_album_links">
+				<ul>
+					{% if albums %}
+						{% for album in albums %}
+							{% if album_selected == album.album %}
+								<li class="container_album_link_selected">{{ album.album }}</li>
+							{% else %}
+								<li class="container_album_link">
+									<a href="gallery?album={{ album.category }}-{{ album.album }}">
+										{{ album.album }}
+									</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</ul>
+			</div>
+			<div class="container_picture">
+				<img alt="{{ photo_selected.photoId }}" src="{{ photo_selected.url }}"
+					width="522" height="392" />
+			</div>
+			<div class="container_thumbnails">
+				<div class="container_thumbnails_separator"></div>
+				{% for photo in photos %}
+					<div class="container_thumbnail"><img width="67" height="52" alt="{{ photo.photoId }}-{{ photo.url }}" src="{{ photo.thumbnailUrl }}" /></div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<div class="footer_copyright">Copyrights 2011 All rights
+				reserved</div>
+			<div class="footer_credits">dise&ntilde;o web: molpix.com</div>
+		</div>
+	</footer>
+</body>
+</html>
